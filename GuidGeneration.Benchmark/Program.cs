@@ -1,22 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using System.Drawing;
-using System.Security.Cryptography;
 
 Console.WriteLine("Hello, World!");
 
-var summary = BenchmarkRunner.Run<GuidGenerationBenchmark>();
+BenchmarkRunner.Run<GuidGenerationBenchmark>();
 
 public class GuidGenerationBenchmark
 {
-    //private const int N = 10;
     private const int Size = 2_000_000;
-    
-    public GuidGenerationBenchmark()
-    {
-        
-    }
 
     [Benchmark]
     public void Loop_Simple()
@@ -33,8 +24,6 @@ public class GuidGenerationBenchmark
         var list = new List<Guid>(Size);
         for (var i = 0; i < Size; i++)
             list.Add(Guid.NewGuid());
-        
-        _ = list.Count();
     }
 
     [Benchmark]
